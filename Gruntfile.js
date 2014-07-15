@@ -56,14 +56,14 @@ module.exports = function(grunt) {
       },
       server: {
         files: [srcFiles, htmlFiles, cssFiles],
-        tasks: 'minify',
+        tasks: 'dist',
         options: {
           livereload: true
         }
       },
       serverSource: {
         files: srcFiles,
-        tasks: 'minify',
+        tasks: 'dist',
         options: {
           livereload: getReloadPort()
         }
@@ -308,7 +308,8 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['karma:spec', 'jshint']);
   grunt.registerTask('spec', 'karma:spec');
   grunt.registerTask('e2e', 'protractor:all');
-  grunt.registerTask('server', ['minify', 'connect:devserver']);
+  grunt.registerTask('dist', ['minify', 'create-final-js']);
+  grunt.registerTask('server', ['dist', 'connect:devserver']);
   // Ok, the concurrent watches don't work, because the grunt contrib server
   // is listening only to one port :( Fix this at a later stage.
   //grunt.registerTask('reloader', 'concurrent:watches'); // ok, it doesn't work...
@@ -332,7 +333,8 @@ module.exports = function(grunt) {
     'uglify:external',
     'uglify:text',
     'ngtemplates',
-    'uglify:templates'
+    'uglify:templates',
+    'uglify:arethusa'
   ]);
   grunt.registerTask('sauce', ['sauce_connect', 'protractor:travis', 'sauce-connect-close']);
 };
