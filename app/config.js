@@ -32,6 +32,7 @@ require.config({
       exports: 'd3'
     },
     'dagreD3': {
+      deps: ['d3'],
       exports: 'dagreD3'
     },
     'UserVoice': {
