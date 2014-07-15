@@ -233,7 +233,26 @@ module.exports = function(grunt) {
       uservoice: { files: { "vendor/uservoice/uservoice.min.js": "vendor/uservoice/uservoice.js"} },
       templates: { files: { "dist/templates.min.js": "app/templates/templates.js"} },
       util: { files: { "dist/arethusa_util.min.js": "app/js/util/**/*.js" } },
-      external: { files: { "dist/arethusa_external.min.js": "app/js/external/**/*.js" } }
+      external: { files: { "dist/arethusa_external.min.js": "app/js/external/**/*.js" } },
+      arethusa: { files: { "dist/all.min.js": [
+        "dist/arethusa_util.min.js",
+        "dist/arethusa.core.min.js",
+        "dist/arethusa.artificial_token.min.js",
+        "dist/arethusa.context_menu.min.js",
+        "dist/arethusa.conf_editor.min.js",
+        "dist/arethusa.morph.min.js",
+        "dist/arethusa.review.min.js",
+        "dist/arethusa.search.min.js",
+        "dist/arethusa.dep_tree.min.js",
+        "dist/arethusa.hist.min.js",
+        "dist/arethusa.relation.min.js",
+        "dist/arethusa.exercise.min.js",
+        "dist/arethusa.sg.min.js",
+        "dist/arethusa.text.min.js",
+        "dist/arethusa.min.js",
+        "dist/arethusa_external.min.js",
+        "dist/templates.min.js"
+      ]}}
     },
     sass: {
       dist: {
