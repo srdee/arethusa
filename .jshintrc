@@ -25,6 +25,8 @@
     "browser" : false,
     "by" : false,
     "element" : false,
-    "process" : false
+    "process" : false,
+    "requirejs" : false,
+    "define" : false
   }
 }

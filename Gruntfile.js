@@ -34,7 +34,7 @@ module.exports = function(grunt) {
 
     var result = template.replace('{{text}}', content);
     grunt.file.write('./dist/arethusa.min.js', result);
-  })
+  });
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     jasmine: {
