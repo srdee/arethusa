@@ -28,6 +28,13 @@ function pluginFiles(name) {
 
 module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
+  grunt.registerTask('create-final-js', function() {
+    var template = grunt.file.read('./app/main_template.js');
+    var content = grunt.file.read('./dist/all.min.js');
+
+    var result = template.replace('{{text}}', content);
+    grunt.file.write('./dist/arethusa.min.js', result);
+  })
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     jasmine: {
