@@ -223,6 +223,14 @@ module.exports = function(grunt) {
           }
         }
       },
+      testserver: {
+        options: {
+          port: devServerPort,
+          debug: false,
+          keepalive: true,
+          livereload: false
+        }
+      }
     },
     sauce_connect: {
       your_target: {
