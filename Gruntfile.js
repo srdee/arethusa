@@ -159,6 +159,7 @@ module.exports = function(grunt) {
     },
     protractor: {
       options: {
+        configFile: './protractor.js',
         keepAlive: false, // If false, the grunt process stops when the test fails.
         noColor: false, // If true, protractor will not use colors in its output.
       },
@@ -170,7 +171,8 @@ module.exports = function(grunt) {
             multiCapabilities: [{'browserName': 'firefox'}, {'browserName': 'chrome'}],
             //capabilities: {'browserName': 'firefox'},
             baseUrl: 'http://localhost:' + devServerPort
-          }},
+          }
+        },
       }, // A target needs to be defined, otherwise protractor won't run
       travis: {
         options: {
