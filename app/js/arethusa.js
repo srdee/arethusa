@@ -5,6 +5,7 @@ angular.module('arethusa', [
   'mm.foundation',
   'ngRoute',
   'pascalprecht.translate',
+  'angular-loading-bar',
   'arethusa.core',
   'arethusa.contextMenu',
   'arethusa.confEditor',
@@ -24,14 +25,17 @@ angular.module('arethusa', [
 angular.module('arethusa').config([
   '$routeProvider',
   '$translateProvider',
+  'cfpLoadingBarProvider',
   'MAIN_ROUTE',
   'CONF_ROUTE',
-  function ($routeProvider, $translateProvider,
+  function ($routeProvider, $translateProvider, cfpLoadingBarProvider,
             MAIN_ROUTE, CONF_ROUTE) {
     $routeProvider.when('/', MAIN_ROUTE);
     $routeProvider.when('/conf_editor', CONF_ROUTE);
     $routeProvider.when('/:conf', MAIN_ROUTE);
     $routeProvider.when('/conf_editor/:conf', CONF_ROUTE);
+
+    cfpLoadingBarProvider.includeSpinner = false;
 
     $translateProvider
       .useStaticFilesLoader({
