@@ -1,4 +1,5 @@
 'use strict';
+
 angular.module('arethusa', [
   'angulartics',
   'angulartics.google.analytics',
@@ -36,6 +37,7 @@ angular.module('arethusa').config([
     $routeProvider.when('/conf_editor/:conf', CONF_ROUTE);
 
     cfpLoadingBarProvider.includeSpinner = false;
+    cfpLoadingBarProvider.latencyThreshold = 250;
 
     $translateProvider
       .useStaticFilesLoader({
