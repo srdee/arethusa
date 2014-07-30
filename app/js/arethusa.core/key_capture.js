@@ -80,6 +80,20 @@ angular.module('arethusa.core').service('keyCapture', [
       return Object.keys(keys.modifiers);
     }
 
+    function combinedModKeys(mod, key) {
+      if (isModifierKey(mod, key)) {
+        self.modifierActive = true;
+      } else {
+        self.modifierActive = false;
+      }
+    }
+
+    function isModifierKey(mod, key) {
+      if (arethusaUtil.isIncluded(mod, key)) {
+        return true;
+      }
+    }
+
     var lookUpKey = [];
     this.getForeignKey = function(event, language) {
       self.modifierActive = false;
@@ -88,6 +102,7 @@ angular.module('arethusa.core').service('keyCapture', [
       var key = codesToKeys[event.keyCode];
       var mod = keys.modifiers;
       if (key) {
+        combinedModKeys(modifiers(keys), key);
         // We don't want to match 'shift' as a key, so
         // we return if it's the case.
         if (key == 'shift') {
@@ -339,7 +354,9 @@ angular.module('arethusa.core').service('keyCapture', [
       if (kKey.hide === undefined && !combo) {
         style.class[number[cas]] = "inactive";
       }
-      if (combo) {
+      style.class[number[cas]] = style.class[number[cas]] || '';
+      // Don't add class twice
+      if (combo && !style.class[number[cas]].match(/inactive-combo/)) {
         style.class[number[cas]] = style.class[number[cas]] + " inactive-combo";
       }
     }
