@@ -333,7 +333,7 @@ angular.module('arethusa.core').service('keyCapture', [
       return keys;
     };
 
-    // Help
+    // Help - keyboard display
     function usKeyboardLayout() {
       var layout = self.conf("keys");
       return layout.us;
@@ -347,43 +347,40 @@ angular.module('arethusa.core').service('keyCapture', [
       // char, the second one the upper case char. This function
       // handles cases, where we want to set either the lower
       // case or the upper case key inactive.
-
+      var caseNumber = { "lower" : "0", "upper" : "1"};
+      var inactiveCombo = ' inactive-combo';
       var style = kKey.style;
-      var number = { "lower" : "0", "upper" : "1"};
+      var classProp = caseNumber[cas];
+
       style.class = style.class || {};
-      if (kKey.hide === undefined && !combo) {
-        style.class[number[cas]] = "inactive";
+      var activeStyle = style.class;
+
+      // set style inactive
+      if (kKey.hide === undefined && combo === undefined) {
+        activeStyle[classProp] = "inactive";
       }
-      style.class[number[cas]] = style.class[number[cas]] || '';
+
+      activeStyle[classProp] = activeStyle[classProp] || '';
+
+      // set style inactive-combo
+      var inactiveComboSet = activeStyle[classProp].match(inactiveCombo);
       // Don't add class twice
-      if (combo && !style.class[number[cas]].match(/inactive-combo/)) {
-        style.class[number[cas]] = style.class[number[cas]] + " inactive-combo";
+      if (combo && !inactiveComboSet) {
+        activeStyle[classProp] = activeStyle[classProp] + inactiveCombo;
+      }
+
+      // remove style inactive-combo
+      if (combo === false && inactiveComboSet) {
+        activeStyle[classProp] = activeStyle[classProp].replace(inactiveCombo, '');
       }
     }
 
-    function removeStyle(kKey, cas) {
-      var number = { "lower" : "0", "upper" : "1"};
-      var style = kKey.style;
-      style.class = style.class || {};
-      if (kKey.hide === undefined) {
-        if (style.class[number[cas]]) {
-          style.class[number[cas]] = style.class[number[cas]].replace(' inactive-combo', '');
-        }
+    function comboKeys(kKey, cas) {
+      var active = self.modifierActive;
+      if (kKey.lower.match(/[^aeyiovh:'\[\]]/) && active !== undefined) {
+        setStyle(kKey, cas, active);
       }
     }
-
-    this.comboKeys = function(kKey, cas) {
-      if (self.modifierActive === true) {
-        if (kKey.lower.match(/[^aeyiovh:'\[\]]/)) {
-          setStyle(kKey, cas, true);
-        }
-      }
-      if (self.modifierActive === false) {
-        if (kKey.lower.match(/[^aeyiovh:'\[\]]/)) {
-          removeStyle(kKey, cas);
-        }
-      }
-    };
 
     function pushKeys(fKeys, kKey, cas) {
       var display = kKey.show;
@@ -392,7 +389,7 @@ angular.module('arethusa.core').service('keyCapture', [
 
       if (fKeys[typeCase]) {
         display.push(fKeys[typeCase]);
-        self.comboKeys(kKey, cas);
+        comboKeys(kKey, cas);
       } else {
         setStyle(kKey, cas);
         display.push(typeCase);
