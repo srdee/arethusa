@@ -82,6 +82,7 @@ angular.module('arethusa.core').service('keyCapture', [
 
     var lookUpKey = [];
     this.getForeignKey = function(event, language) {
+      self.modifierActive = false;
       var res = [];
       var keys = keysFor(language);
       var key = codesToKeys[event.keyCode];
@@ -96,6 +97,7 @@ angular.module('arethusa.core').service('keyCapture', [
           res.push('shift');
         }
         if (arethusaUtil.isIncluded(modifiers(keys), key)) {
+          self.modifierActive = true;
           res.push(key);
           var joined = res.join('-');
           lookUpKey.push(joined);
@@ -322,7 +324,7 @@ angular.module('arethusa.core').service('keyCapture', [
       return layout.us;
     }
 
-    function setStyle(kKey, cas) {
+    function setStyle(kKey, cas, combo) {
       // 0 and 1 as properties of kKey.style.class may seem cryptic:
       // ng-repeat in the foreign-keys-help-template iterates
       // over the kKey.show array and provides class names with the
@@ -334,10 +336,37 @@ angular.module('arethusa.core').service('keyCapture', [
       var style = kKey.style;
       var number = { "lower" : "0", "upper" : "1"};
       style.class = style.class || {};
-      if (kKey.hide === undefined) {
+      if (kKey.hide === undefined && !combo) {
         style.class[number[cas]] = "inactive";
       }
+      if (combo) {
+        style.class[number[cas]] = style.class[number[cas]] + " inactive-combo";
+      }
     }
+
+    function removeStyle(kKey, cas) {
+      var number = { "lower" : "0", "upper" : "1"};
+      var style = kKey.style;
+      style.class = style.class || {};
+      if (kKey.hide === undefined) {
+        if (style.class[number[cas]]) {
+          style.class[number[cas]] = style.class[number[cas]].replace(' inactive-combo', '');
+        }
+      }
+    }
+
+    this.comboKeys = function(kKey, cas) {
+      if (self.modifierActive === true) {
+        if (kKey.lower.match(/[^aeyiovh:'\[\]]/)) {
+          setStyle(kKey, cas, true);
+        }
+      }
+      if (self.modifierActive === false) {
+        if (kKey.lower.match(/[^aeyiovh:'\[\]]/)) {
+          removeStyle(kKey, cas);
+        }
+      }
+    };
 
     function pushKeys(fKeys, kKey, cas) {
       var display = kKey.show;
@@ -346,6 +375,7 @@ angular.module('arethusa.core').service('keyCapture', [
 
       if (fKeys[typeCase]) {
         display.push(fKeys[typeCase]);
+        self.comboKeys(kKey, cas);
       } else {
         setStyle(kKey, cas);
         display.push(typeCase);
