@@ -112,7 +112,7 @@ angular.module('arethusa.core').service('keyCapture', [
           res.push('shift');
         }
         if (arethusaUtil.isIncluded(modifiers(keys), key)) {
-          self.modifierActive = true;
+          self.modifierActive = key;
           res.push(key);
           var joined = res.join('-');
           lookUpKey.push(joined);
@@ -375,9 +375,57 @@ angular.module('arethusa.core').service('keyCapture', [
       }
     }
 
+    function activeComboKeys() {
+      var keys = keysFor('gr');
+      var res = { comboKeys : [], combination: []};
+      angular.forEach(keys, function(value, key) {
+        if (key.length > 1 && key != "modifiers") {
+          res.combination.push(key);
+          var last = key[key.length -1];
+          if (!arethusaUtil.isIncluded(res.comboKeys, last)) {
+            res.comboKeys.push(last);
+          }
+        }
+      });
+      angular.forEach(modifiers(keys), function(value, key) {
+        if (!value.match(/shift/)) {
+          res.comboKeys.push(value);
+        }
+      });
+      return res;
+    }
+
+    function formattedCombinations(combinations) {
+      return arethusaUtil.inject([], combinations, function(memo, c, i){
+        var str = c.replace(/shift-/g, '*').replace(/-/g, "+").replace(/\*/g, 'shift-');
+        var split = str.split('+');
+        memo.push(split);
+      });
+    }
+
+    function exceptComboKeys(activeModifier) {
+      var c = activeComboKeys();
+      var str = "[^";
+      angular.forEach(formattedCombinations(c.combination), function(comb, i){
+        if (arethusaUtil.isIncluded(comb, activeModifier)) {
+          angular.forEach(comb, function(combKey, ind) {
+            if (!combKey.match(/shift.*/)) {
+              if (combKey.match(/[\[\]]/)) {
+                combKey = "\\" + combKey;
+              }
+              str = str + combKey;
+            }
+          });
+        }
+      });
+      str = str + "]";
+      return str;
+    }
+
     function comboKeys(kKey, cas) {
       var active = self.modifierActive;
-      if (kKey.lower.match(/[^aeyiovh:'\[\]]/) && active !== undefined) {
+      var exceptions = new RegExp(exceptComboKeys(active));
+      if (kKey.lower.match(exceptions) && active !== undefined) {
         setStyle(kKey, cas, active);
       }
     }
