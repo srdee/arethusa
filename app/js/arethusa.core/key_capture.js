@@ -112,9 +112,9 @@ angular.module('arethusa.core').service('keyCapture', [
           res.push('shift');
         }
         if (arethusaUtil.isIncluded(modifiers(keys), key)) {
-          self.modifierActive = key;
           res.push(key);
           var joined = res.join('-');
+          self.modifierActive = joined;
           lookUpKey.push(joined);
           return false;
         } else {
