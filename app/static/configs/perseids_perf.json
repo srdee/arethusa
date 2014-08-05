@@ -43,7 +43,7 @@
     "perseidsPerf" : {
       "retriever" : {
         "PerseidsPerfHandler" : {
-          "resource" : "perseidsPerf"
+          "resource" : "perseidsResource"
         }
       }
     }
