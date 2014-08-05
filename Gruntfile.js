@@ -235,6 +235,7 @@ module.exports = function(grunt) {
       },
       main: { files: pluginFiles('arethusa') },
       core: { files: pluginFiles('arethusa.core') },
+      perseidsPerf: { files: pluginFiles('arethusa.perseidsPerf') },
       comments: { files: pluginFiles('arethusa.comments') },
       hebrewMorph: { files: pluginFiles('arethusa.hebrew_morph') },
       artificialToken: { files: pluginFiles('arethusa.artificial_token') },
@@ -294,6 +295,7 @@ module.exports = function(grunt) {
   //grunt.registerTask('reloader', 'concurrent:watches'); // ok, it doesn't work...
   grunt.registerTask('reloader', 'watch:server');
   grunt.registerTask('minify', [
+    'uglify:perseidsPerf',
     'uglify:comments',
     'uglify:hebrewMorph',
     'cssmin:css',

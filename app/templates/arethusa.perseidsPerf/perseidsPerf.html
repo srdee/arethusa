@@ -1,0 +1,32 @@
+<div>
+  <span class="button" ng-click="plugin.getFiles()">GET</span>
+  <span class="button" ng-disabled="!plugin.canPost" ng-click="plugin.postFiles()">POST</span>
+
+  <div ng-pluralize
+    ng-pluralize count="plugin.retrieverCount"
+    when="{ '0' : 'No instances loaded', 'one' : '1 instance loaded', 'other': '{} instances loaded'}">
+  </div>
+
+  <input
+    type="text"
+    ng-model="plugin.documents"
+    tooltip="Add a space separate list of publication ids and hit reinit!"/>
+  <span class="button small" ng-click="plugin.reinit()">Reinit</span>
+
+  <h4>GET Results</h4>
+  <ul>
+    <li ng-repeat="report in plugin.getResults">
+      <div perf-report="report"/>
+    </li>
+  </ul>
+
+  <div delimiter/>
+  <div delimiter/>
+
+  <h4>POST Results</h4>
+  <ul>
+    <li ng-repeat="report in plugin.postResults">
+      <div perf-report="report"/>
+    </li>
+  </ul>
+</div>

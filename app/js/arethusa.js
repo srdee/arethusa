@@ -5,6 +5,7 @@ angular.module('arethusa', [
   'mm.foundation',
   'ngRoute',
   'arethusa.core',
+  'arethusa.perseidsPerf',
   'arethusa.contextMenu',
   'arethusa.confEditor',
   'arethusa.morph',

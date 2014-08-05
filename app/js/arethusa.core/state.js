@@ -475,6 +475,11 @@ angular.module('arethusa.core').service('state', [
     this.init = function () {
       configure();
       self.retrieveTokens();
+
+      if (!Object.keys(tokenRetrievers).length) {
+        self.tokens = {};
+        self.broadcast('stateLoaded');
+      }
     };
   }
 ]);

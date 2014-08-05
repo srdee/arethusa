@@ -1,0 +1,52 @@
+{
+  "main" : {
+    "template"  : "templates/main_with_sidepanel.html",
+    "foldSidepanel" : true,
+    "plugins" : [
+      "perseidsPerf"
+    ]
+  },
+
+  "auths": {
+    "perseidsAuth" : {
+      "type": "CSRF",
+      "cookie": "csrftoken",
+      "header": "X-CSRF-Token",
+      "ping" : "http://sosol.perseids.org/sosol/dmm_api/ping"
+    }
+  },
+
+  "navbar" : {
+    "template" : "templates/navbar1.html"
+  },
+
+  "resources" : {
+    "perseidsResource" : {
+      "route" : "http://sosol.perseids.org/sosol/dmm_api/item/TreebankCite/:doc",
+      "auth": "perseidsAuth"
+    },
+
+    "fakePerseids" : {
+      "route" : "http://74.70.97.104:8085/xml_server/:doc"
+    },
+
+    "localPerseids" : {
+      "route" : "http://localhost:8085/xml_server/:doc"
+    },
+
+    "staticFiles" : {
+      "route" : "http://services.perseids.org/llt-data/:doc.xml"
+    }
+  },
+
+  "plugins" : {
+    "perseidsPerf" : {
+      "retriever" : {
+        "PerseidsPerfHandler" : {
+          "resource" : "fakePerseids"
+        }
+      }
+    }
+  }
+}
+

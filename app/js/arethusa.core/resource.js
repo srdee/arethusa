@@ -89,9 +89,9 @@ angular.module('arethusa.core').factory('Resource', [
         return stopSpinning(self.resource.get(params));
       };
 
-      this.save = function (data,mimetype) {
+      this.save = function (data, otherParams, mimetype) {
         spinner.spin();
-        var params = collectedParams(self.params,{});
+        var params = collectedParams(self.params, otherParams);
         self.mimetype = mimetype;
         return stopSpinning(self.resource.save(params,data));
       };
