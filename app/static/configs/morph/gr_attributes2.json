@@ -451,18 +451,18 @@
       ],
       "values" : {
         "ord" : {
-          "long" : "Ordinal",
+          "long" : "ordinal",
           "short" : "ord",
           "postag" : "o"
         },
         "card" : {
           "short" : "card",
-          "long" : "Cardinal",
+          "long" : "cardinal",
           "postag" : "c"
         },
         "adv" : {
           "short" : "adv",
-          "long" : "Adverb",
+          "long" : "adverb",
           "postag" : "d"
         }
       }
