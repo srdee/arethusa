@@ -3,7 +3,7 @@
     "template"  : "templates/main_with_sidepanel.html",
     "foldSidepanel" : true,
     "plugins" : [
-      "perseidsResource"
+      "perseidsPerf"
     ]
   },
 
@@ -43,7 +43,7 @@
     "perseidsPerf" : {
       "retriever" : {
         "PerseidsPerfHandler" : {
-          "resource" : "fakePerseids"
+          "resource" : "perseidsPerf"
         }
       }
     }
