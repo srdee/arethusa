@@ -8,7 +8,8 @@
     "voice",
     "gend",
     "case",
-    "degree"
+    "degree",
+    "numType"
   ],
   "styledThrough" : "pos",
   "attributes" : {
@@ -415,6 +416,34 @@
           "long" : "superlative",
           "short" : "sup",
           "postag" : "s"
+        }
+      }
+    },
+    "numType" : {
+      "long" : "Numeral type",
+      "short" : "numType",
+      "rules" : [
+        {
+          "if" : {
+            "pos" : "nrl"
+          }
+        }
+      ],
+      "values" : {
+        "ord" : {
+          "long" : "Ordinal",
+          "short" : "ord",
+          "postag" : "o"
+        },
+        "card" : {
+          "short" : "card",
+          "long" : "Cardinal",
+          "postag" : "c"
+        },
+        "adv" : {
+          "short" : "adv",
+          "long" : "Adverb",
+          "postag" : "d"
         }
       }
     }
