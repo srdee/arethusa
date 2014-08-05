@@ -3,7 +3,7 @@
     "template"  : "templates/main_with_sidepanel.html",
     "foldSidepanel" : true,
     "plugins" : [
-      "perseidsPerf"
+      "perseidsResource"
     ]
   },
 
