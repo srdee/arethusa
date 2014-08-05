@@ -64,6 +64,14 @@
             "color" : "darkorange"
           }
         },
+        "nrl" : {
+          "long" : "numeral",
+          "short" : "nrl",
+          "postag" : "m",
+          "style" : {
+            "color" : "lightgreen"
+          }
+        },
         "adp" : {
           "long" : "adposition",
           "short" : "adp",
@@ -420,7 +428,6 @@
       "values" : {
         "pos" : {
           "verb\nparticiple": "verb",
-          "numeral": "adjective",
           "particle": "adverb",
           "preposition": "adposition",
           "exclamation": "interjection"
