@@ -153,6 +153,11 @@
           "unless" : {
             "mood" : "part"
           }
+        },
+        {
+          "if" : {
+            "numType" : [ "ord", "card" ]
+          }
         }
       ],
       "values" : {
@@ -316,6 +321,11 @@
             "pos" : "verb",
             "mood" : "part"
           }
+        },
+        {
+          "if" : {
+            "numType" : [ "ord", "card" ]
+          }
         }
       ],
       "values" : {
@@ -349,6 +359,11 @@
           "if" : {
             "pos" : "verb",
             "mood" : "part"
+          }
+        },
+        {
+          "if" : {
+            "numType" : [ "ord", "card" ]
           }
         }
       ],
@@ -398,6 +413,11 @@
           "if" : {
             "pos" : "verb",
             "mood" : "part"
+          }
+        },
+        {
+          "if" : {
+            "numType" : [ "ord", "card" ]
           }
         }
       ],
