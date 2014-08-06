@@ -45,7 +45,7 @@ angular.module('arethusa.perseidsPerf').service('perseidsPerf', [
     this.postFiles = function() {
       self.postResults = [];
       angular.forEach(retrievers, function(retriever, i) {
-        retriever.get(function(report) {
+        retriever.post(function(report) {
           self.postResults.push(report);
         });
       });
