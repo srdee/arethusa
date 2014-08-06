@@ -24,7 +24,7 @@ angular.module('arethusa').factory('PerseidsPerfHandler', [
 
       function createReport(res, callback, method, start) {
         var stop = new Date();
-        var getData = res.data;
+        getData = res.data;
         var size = res.data.length;
         var report = new Report(method, start, stop, size, queryParam.doc);
         callback(report);
