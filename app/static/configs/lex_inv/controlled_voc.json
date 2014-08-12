@@ -1,0 +1,39 @@
+{
+  "pos" : {
+    "noun" : {
+      "inputFields" : [ "nominative", "stem", "inflectable class", "gender"],
+      "options" : {
+        "casus" : [ 1, 2, 3, 4, 5, 6],
+        "numerus" : [ "sg", "pl"]
+      }
+    },
+    "adj" : {
+      "inputFields" : [ "nominative", "stem", "inflectable class", "number of endings" ],
+      "options" : {
+        "casus" : [ 1, 2, 3, 4, 5, 6],
+        "sexus" : ["m", "f", "n"],
+        "numerus" : [ "sg", "pl"]
+      }
+    },
+    "verb" : {
+      "inputFields" : [ "present stem", "perfect stem", "ppp stem", "inflectable class"],
+      "options" : {
+        "person" : [ 1, 2, 3],
+        "numerus" : [ "sg", "pl"],
+        "modus" : [ "indicative", "conjunctive", "imperative"]
+      }
+    },
+    "adv" : {
+      "inputFields" : ["word"]
+    },
+    "conj" : {
+      "inputFields" : ["word"]
+    },
+    "prep" : {
+      "inputFields" : ["word"]
+    },
+    "excl" : {
+      "inputFields" : ["word"]
+    }
+  }
+}
