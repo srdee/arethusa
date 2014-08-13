@@ -61,8 +61,8 @@
     "focusSel"  : "Focus Selection",
     "centerTree" : "Center Tree",
     "perfectWidth" : "Perfect Width",
-    "compact" : "Baum verdichten",
-    "widen" : "Baum ausdehnen"
+    "compact" : "Compact Tree",
+    "widen" : "Widen Tree"
   },
 
   "morph" : {
