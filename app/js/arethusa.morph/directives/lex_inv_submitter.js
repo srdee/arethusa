@@ -21,34 +21,85 @@ angular.module('arethusa.morph').directive('lexInvSubmitter', [
           scope.values = {
             "noun" : {
               "inputFields" : [
+                { "cat" : "nominative" },
+                { "cat" : "stem" },
                 {
-                "cat" : "nominative"
-              },
-              {
-                "cat" : "stem"
-              },
-              {
-                "cat" : "inflection class",
-                "values" : [
-                  {
-                  "val" : "1",
-                  "str" : "A-Declension"
+                  "cat" : "inflection class",
+                  "values" : [
+                    {
+                      "val" : "1",
+                      "str" : "A-Declension"
+                    },
+                    {
+                      "val" : "2",
+                      "str" : "O-Declension"
+                    },
+                    {
+                      "val" : "3",
+                      "str" : "Third Declension (consonantic)"
+                    },
+                    {
+                      "val" : "31",
+                      "str" : "Third Declension (i, neuter)"
+                    },
+                    {
+                      "val" : "32",
+                      "str" : "Third Declension (i, feminine)"
+                    },
+                    {
+                      "val" : "33",
+                      "str" : "Third Declension (mixed)"
+                    },
+                    {
+                      "val" : "4",
+                      "str" : "U-Declension"
+                    },
+                    {
+                      "val" : "5",
+                      "str" : "E-Declension"
+                    }
+                  ]
+                },
+                {
+                  "cat" : "gender",
+                  "values" : [
+                    { "val" : "m", "str" : "m" },
+                    { "val" : "f", "str" : "f" },
+                    { "val" : "n", "str" : "n" }
+                  ]
                 }
-                ]
-              },
-              {
-                "cat" : "gender",
-                "values" : [
-                  { "val" : "m", "str" : "m" },
-                  { "val" : "f", "str" : "f" },
-                  { "val" : "n", "str" : "n" }
-                ]
-              }
               ],
               "options" : {
                 "casus" : [ 1, 2, 3, 4, 5, 6],
                 "numerus" : [ "sg", "pl"]
               }
+            },
+            "adj" : {
+              "inputFields" : [
+                { "cat" : "nominative" },
+                { "cat" : "stem" },
+                {
+                  "cat" : "inflection class",
+                  "values" : [
+                    {
+                      "val" : "1",
+                      "str" : "A/0-Declension"
+                    },
+                    {
+                      "val" : "3",
+                      "str" : "Third Declension"
+                    }
+                  ]
+                },
+                {
+                  "cat" : "number of endings",
+                  "values": [
+                    { "val" : 1, "str" : "1" },
+                    { "val" : 2, "str" : "2" },
+                    { "val" : 3, "str" : "3" }
+                  ]
+                }
+              ]
             }
           };
 
