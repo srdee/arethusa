@@ -1,0 +1,21 @@
+<div>
+  <div>
+    <span translate="morph.forms"/>
+    <span translate="of"/>
+    <span principal-parts="principalParts" type="noun"/>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Case</th>
+        <th>Singular</th>
+        <th>Plural</th>
+      </tr>
+    </thead>
+    <tr ng-repeat='(casus, forms) in tableData'>
+      <td>{{ casus }}</td>
+      <td>{{ formsAsString(forms[1]) }}</td>
+      <td>{{ formsAsString(forms[2]) }}</td>
+    </tr>
+  </table>
+</div>
