@@ -34,6 +34,14 @@
           <input type="text" class="compact" ng-model="data[field.cat]"/>
         </div>
       </div>
+      <div ng-if="pos === 'noun'" class="center">
+        <label>Persona
+          <input type="checkbox" ng-model="data.persona"/>
+        <label>
+        </label>Place
+          <input type="checkbox" ng-model="data.place"/>
+        </label>
+      </div>
     </div>
 
     <div>

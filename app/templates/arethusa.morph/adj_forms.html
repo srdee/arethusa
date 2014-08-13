@@ -1,0 +1,47 @@
+<div>
+  <div>
+    <span translate="morph.forms"/>
+    <span translate="of"/>
+    <!--<span principal-parts="principalParts" type="adj"/>-->
+  </div>
+  <div>
+    <table class="table-2l">
+      <thead>
+        <tr>
+          <th colspan="4" class="center">Singular</th>
+        </tr>
+        <tr>
+          <th style="width:5%" class="center">Case</th>
+          <th style="width:25%" class="center">m</th>
+          <th style="width:25%" class="center">f</th>
+          <th style="width:25%" class="center">n</th>
+        </tr>
+      </thead>
+      <tr ng-repeat='(casus, forms) in tableData[1]'>
+        <td>{{ casus }}</td>
+        <td>{{ formsAsString(forms.m) }}</td>
+        <td>{{ formsAsString(forms.f) }}</td>
+        <td>{{ formsAsString(forms.n) }}</td>
+      </tr>
+    </table>
+    <table class="table-2r">
+      <thead>
+        <tr>
+          <th colspan="4" class="center">Plural</th>
+        </tr>
+        <tr>
+          <th style="width:5%" class="center">Case</th>
+          <th style="width:25%" class="center">m</th>
+          <th style="width:25%" class="center">f</th>
+          <th style="width:25%" class="center">n</th>
+        </tr>
+      </thead>
+      <tr ng-repeat='(casus, forms) in tableData[2]'>
+        <td>{{ casus }}</td>
+        <td>{{ formsAsString(forms.m) }}</td>
+        <td>{{ formsAsString(forms.f) }}</td>
+        <td>{{ formsAsString(forms.n) }}</td>
+      </tr>
+    </table>
+  </div>
+</div>

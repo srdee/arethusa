@@ -4,8 +4,11 @@
 
 <div ng-if="forms" class="fade">
   <div ng-switch="pos">
-    <div ng-when="noun">
+    <div ng-switch-when="noun">
       <div noun-forms="forms"/>
+    </div>
+    <div ng-switch-when="adj"/>
+      <div adj-forms="forms"/>
     </div>
   </div>
 </div>
