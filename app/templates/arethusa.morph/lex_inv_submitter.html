@@ -1,0 +1,44 @@
+<div>
+  <span ng-click="toggle()" class="button micro radius">LexInv</span>
+  <div ng-show="visible">
+    <p class="center">Submit a new Lemma</p>
+    <div class="small-12 columns">
+      <div class="small-3 columns">
+        <label class="right">Part of Speech</label>
+      </div>
+
+      <div class="small-9 columns">
+        <select
+          class="compact"
+          ng-model="pos"
+          ng-change="clearData()"
+          ng-options="key as key for (key, value) in values">
+        </select>
+      </div>
+    </div>
+
+    <div ng-if="pos">
+      <div class="small-12 columns" ng-repeat="field in values[pos].inputFields">
+        <div class="small-3 columns">
+          <label class="right">{{ field.cat }}</label>
+        </div>
+        <div ng-if="field.values" class="small-9 columns">
+          <select
+            class="compact"
+            required
+            ng-model="data[field.cat]"
+            ng-options="value.val as value.str for value in field.values">
+          </select>
+        </div>
+        <div ng-if="!field.values" class="small-9 columns">
+          <input type="text" class="compact" ng-model="data[field.cat]"/>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <span ng-click="request()" class="button tiny radius">Submit
+      </span>
+    </div>
+  </div>
+</div>

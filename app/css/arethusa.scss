@@ -711,6 +711,10 @@ input.warn {
   border-color: orange;
 }
 
+.full-modal {
+  height: 80%;
+}
+
 
 /***************************************************************************
  *                               Animations                                *
@@ -724,4 +728,53 @@ input.warn {
 
 .fade {
   @include toggler(500ms, 500ms);
+}
+
+
+.slide-top {
+  @include easing-timing-function();
+  &.ng-enter {
+    @include transform(translateY(-20px)); 
+    @include transition-duration(250ms);
+    opacity: 0;
+  }
+
+  &.ng-enter-active {
+    @include transform(translateY(0));
+    opacity: 1; 
+  }
+
+  &.ng-leave {
+    @include transform(translateY(0));
+    @include transition-duration(250ms);
+    opacity: 1;
+  }
+
+  &.ng-leave-active {
+    @include transform(translateY(-20px)); 
+    opacity: 0; 
+  }
+
+  // Hide
+  &.ng-hide-add {
+    @include transform(translateY(0));
+    @include transition-duration(250ms);
+    opacity:1;    
+  } 
+  &.ng-hide-add.ng-hide-add-active {
+    @include transform(translateY(-60px)); 
+    opacity:0;
+  }
+
+  // Show
+  &.ng-hide-remove {
+    @include transform(translateY(-60px)); 
+    @include transition-duration(250ms);
+    display:block!important;
+    opacity:0;
+  }
+  &.ng-hide-remove.ng-hide-remove-active {
+    @include transform(translateY(0));
+    opacity:1;
+  }
 }
