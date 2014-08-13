@@ -1,0 +1,11 @@
+<div ng-if="!forms">
+  Request in progress for {{ request }}
+</div>
+
+<div ng-if="forms" class="fade">
+  <div ng-switch="pos">
+    <div ng-when="noun">
+      <div noun-forms="forms"/>
+    </div>
+  </div>
+</div>
