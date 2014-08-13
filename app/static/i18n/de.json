@@ -68,6 +68,7 @@
   "morph" : {
     "lemmaHint" : "Dieses Lemma wurde automatisch eingetragen!\nÜberprüfe es, bevor du speicherst!",
     "createSuccess" : "Form hinzugefügt für",
-    "createError" : "Kann unvollständige Form nicht speichern"
+    "createError" : "Kann unvollständige Form nicht speichern",
+    "forms" : "Formen"
   }
 }
