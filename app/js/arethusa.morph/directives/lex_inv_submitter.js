@@ -113,6 +113,9 @@ angular.module('arethusa.morph').directive('lexInvSubmitter', [
             arethusaUtil.inject(scope.request, scope.data, function(memo, k, v) {
               memo[k.split(' ').join('_')] = v;
             });
+            if (scope.pos === 'adj') {
+              scope.request.degree = 'pos';
+            }
 
             scope.forms = false;
             builder.getForms(scope.request, function(res) {
