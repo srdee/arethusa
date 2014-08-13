@@ -68,6 +68,10 @@
       "route" : "http://sosol.perseus.tufts.edu/fuseki/ds/query?format=json"
     },
 
+    "lltFormBuilder" : {
+      "route" : "http://74.70.97.104:8087/generate"
+    },
+
     "morphologyService" : {
       "route" : "http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=lat&engine=morpheuslat"
     },
