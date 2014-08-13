@@ -57,19 +57,19 @@ angular.module('arethusa.morph').directive('lexInvSubmitter', [
           };
 
           var modal;
-          scope.request = function() {
-            var data = arethusaUtil.inject({}, scope.data, function(memo, k, v) {
+          scope.submit = function() {
+            scope.request = { type: scope.pos };
+            arethusaUtil.inject(scope.request, scope.data, function(memo, k, v) {
               memo[k.split(' ').join('_')] = v;
             });
-            data.type = scope.pos;
 
             scope.forms = false;
-            builder.getForms(data, function(res) {
+            builder.getForms(scope.request, function(res) {
               scope.forms = res.data;
             });
 
             modal = $modal.open({
-              template: '<div>{{ forms }}</div>',
+              templateUrl: 'templates/arethusa.morph/form_builder_modal.html',
               scope: scope,
               windowClass: 'full-modal'
             });
