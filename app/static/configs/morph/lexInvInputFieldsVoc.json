@@ -84,5 +84,37 @@
         ]
       }
     ]
+  },
+  "verb" : {
+    "inputFields" : [
+      { "cat" : "present stem" },
+      { "cat" : "perfect stem" },
+      { "cat" : "ppp stem" },
+      {
+        "cat" : "inflection class",
+        "values" : [
+        {
+          "val" : "1",
+          "str" : "A-Conjugation"
+        },
+        {
+          "val" : "2",
+          "str" : "E-Conjugation"
+        },
+        {
+          "val" : "3",
+          "str" : "Third Conjugation (consonant)"
+        },
+        {
+          "val" : "4",
+          "str" : "I-Conjugation"
+        },
+        {
+          "val" : "5",
+          "str" : "Third Conjugation (i-stem)"
+        }
+        ]
+      }
+    ]
   }
 }
