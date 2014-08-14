@@ -36,7 +36,7 @@ angular.module('arethusa.morph').directive('lexInvSubmitter', [
                     },
                     {
                       "val" : "3",
-                      "str" : "Third Declension (consonantic)"
+                      "str" : "Third Declension (consonant)"
                     },
                     {
                       "val" : "31",
@@ -87,12 +87,16 @@ angular.module('arethusa.morph').directive('lexInvSubmitter', [
                     },
                     {
                       "val" : "3",
-                      "str" : "Third Declension"
+                      "str" : "Third Declension (consonant)"
+                    },
+                    {
+                      "val" : "33",
+                      "str" : "Third Declension (i-stem)"
                     }
                   ]
                 },
                 {
-                  "cat" : "number of endings",
+                  "cat" : "number of terminations",
                   "values": [
                     { "val" : 1, "str" : "1" },
                     { "val" : 2, "str" : "2" },
