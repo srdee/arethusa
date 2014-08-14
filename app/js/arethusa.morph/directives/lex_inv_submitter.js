@@ -18,6 +18,10 @@ angular.module('arethusa.morph').directive('lexInvSubmitter', [
             resource: "lltFormBuilder"
           }});
 
+          // The following line is commented out, because I couldn't
+          // test, if it's the correct path (css minify problem or
+          // something), but it should.
+          //scope.values = morph.conf.lexicalInventory.inputFieldsVoc;
           scope.values = {
             "noun" : {
               "inputFields" : [

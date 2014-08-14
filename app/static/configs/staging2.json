@@ -113,6 +113,9 @@
       "contextMenu" : true,
       "contextMenuTemplate": "templates/arethusa.morph/context_menu.html",
       "lexicalInventory" : {
+        "inputFieldsVoc" : {
+          "fileUrl" : "./static/configs/morph/lexInvInputFieldsVoc.json"
+        },
         "retriever" : {
           "LexicalInventoryRetriever" : {
             "resource" : "lexInvFusekiEndpoint"
