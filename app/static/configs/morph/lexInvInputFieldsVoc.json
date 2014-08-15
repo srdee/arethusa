@@ -76,7 +76,7 @@
         ]
       },
       {
-        "cat" : "number of terminations",
+        "cat" : "number of endings",
         "values": [
           { "val" : 1, "str" : "1" },
           { "val" : 2, "str" : "2" },
