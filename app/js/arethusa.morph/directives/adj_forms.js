@@ -9,7 +9,11 @@ angular.module('arethusa.morph').directive('adjForms', [
       },
       link: function(scope, element, attrs) {
         scope.adverb = scope.forms.pop();
-        scope.principalParts = {};
+        scope.principalParts = {
+          nomM: scope.forms[0].string,
+          nomF: scope.forms[12].string,
+          nomN: scope.forms[24].string
+        };
 
         scope.tableData = { 1: {}, 2: {} };
         for (var i=1; i < 7; i++) {
