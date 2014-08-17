@@ -13,6 +13,12 @@ require.config({
     'angular-resource': {
       deps: ['angular']
     },
+    'angular-translate': {
+      deps: ['angular'],
+    },
+    'angular-translate-loader-static-files': {
+      deps: ['angular-translate']
+    },
     'angular-animate': {
       deps: ['angular']
     },
@@ -43,6 +49,12 @@ require.config({
     },
     'UserVoice': {
       exports: 'UserVoice'
+    },
+    'lunr': {
+      exports: 'lunr'
+    },
+    'jsondiffpatch': {
+      exports: 'jsondiffpatch'
     }
   },
   paths: {
@@ -64,7 +76,13 @@ require.config({
     ],
     "angular-resource": [
       "//ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular-resource.min",
-      "../bower_components/angular-resource/angular-resource"
+      "../vendor/angular-resource/angular-resource.min"
+    ],
+    "angular-translate": [
+      "../bower_components/angular-translate/angular-translate.min"
+    ],
+    "angular-translate-loader-static-files": [
+      "../bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min"
     ],
     "angular-route": [
       "//ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular-route.min",
@@ -88,6 +106,8 @@ require.config({
       "../bower_components/jquery/dist/jquery",
     ],
     x2js: "../bower_components/x2js/xml2json.min",
+    lunr: "../bower_components/lunr.js/lunr.min",
+    jsondiffpatch: "../bower_components/jsondiffpatch/build/bundle.min",
     "mm-foundation": "../vendor/mm-foundation/mm-foundation-tpls-0.2.2",
     "colorpicker.module": "../vendor/angular-foundation-colorpicker/js/foundation-colorpicker-module.min",
     "dagreD3": "../vendor/dagre-d3/dagre-d3.min",
