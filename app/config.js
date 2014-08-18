@@ -75,7 +75,7 @@ require.config({
       "../bower_components/angular-mocksanimate/angular-mocks"
     ],
     "angular-resource": [
-      "//ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular-resource.min",
+      //"//ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular-resource.min",
       "../vendor/angular-resource/angular-resource.min"
     ],
     "angular-translate": [
