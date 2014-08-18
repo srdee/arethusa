@@ -108,7 +108,7 @@ require.config({
     x2js: "../bower_components/x2js/xml2json.min",
     lunr: "../bower_components/lunr.js/lunr.min",
     jsondiffpatch: "../bower_components/jsondiffpatch/build/bundle.min",
-    "mm-foundation": "../vendor/mm-foundation/mm-foundation-tpls-0.2.2",
+    "mm-foundation": "../vendor/mm-foundation/mm-foundation-tpls-0.2.2.custom.min",
     "colorpicker.module": "../vendor/angular-foundation-colorpicker/js/foundation-colorpicker-module.min",
     "dagreD3": "../vendor/dagre-d3/dagre-d3.min",
     "UserVoice": "../vendor/uservoice/uservoice.min"
