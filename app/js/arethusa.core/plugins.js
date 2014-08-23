@@ -62,7 +62,6 @@ angular.module('arethusa.core').service('plugins', [
 
     function notifyListeners() {
       angular.forEach(self.all, function(plugin, name) {
-        console.log(name);
         $rootScope.$broadcast('pluginAdded', name, plugin);
       });
     }
