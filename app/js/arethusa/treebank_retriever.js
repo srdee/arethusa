@@ -79,8 +79,10 @@ angular.module('arethusa').factory('TreebankRetriever', [
     function xmlSentenceToState(docIdentifier, words, id, cite) {
       var tokens = {};
       var artificials = arethusaUtil.inject({}, words, extractArtificial);
+      var last = words.length - 1;
       angular.forEach(words, function (xmlToken, i) {
         var token = xmlTokenToState(docIdentifier, xmlToken, id, artificials);
+        if (i === last) token.terminator = true ;
         tokens[token.id] = token;
       });
       return {
