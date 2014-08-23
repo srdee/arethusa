@@ -1,0 +1,14 @@
+<p lang-specific>
+  <span ng-repeat="token in plugin.tokens">
+    <span
+      token="token"
+      colorize="true"
+      click="true"
+      hover="true"
+      highlight="true">
+    </span>
+    <span ng-if="token.string === '.'">
+      <br/><br/>
+    </span>
+  </span>
+</p>
