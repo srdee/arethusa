@@ -1,9 +1,9 @@
 {
   "main" : {
-    "template"  : "templates/morph_discussion.html",
+    "template"  : "templates/morph_discussion/main.html",
     "retrievers" : {
       "TreebankRetriever" : {
-        "resource" : "fakePerseids",
+        "resource" : "perseidsResource",
         "docIdentifier" : "treebank",
         "preselector" : "w"
       }
@@ -29,35 +29,20 @@
   },
 
   "resources" : {
-    "fakePerseids" : {
-      "route" : "http://74.70.97.104:8085/xml_server/:doc",
-      "params" : [
-        "doc",
-        "s"
-      ]
-    },
-
-    "localPerseids" : {
-      "route" : "http://localhost:8085/xml_server/:doc",
-      "params" : [
-        "doc",
-        "s"
-      ]
-    },
-
-    "fakeGold" : {
-      "route" : "http://74.70.97.104:8085/xml_server/gold:gold",
-      "params" : [
-        "gold",
-        "s"
-      ]
-    },
-
-    "fakePerseidsComments" : {
-      "route" : "http://74.70.97.104:8085/comments/:doc",
+    "perseidsResource" : {
+      "route" : "http://sosol.perseids.org/sosol/dmm_api/item/TreebankCite/:doc",
       "params" : [
         "doc"
-      ]
+      ],
+      "auth": "perseidsAuth"
+    },
+
+    "perseidsComments" : {
+      "route" : "http://sosol.perseids.org/sosol/dmm_api/item/TreebankCite/:doc/comments",
+      "params" : [
+        "doc"
+      ],
+      "auth": "perseidsAuth"
     },
 
     "lexInvFusekiEndpoint" : {
@@ -70,10 +55,6 @@
 
     "morphologyServiceGrc" : {
       "route" : "http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=grc&engine=morpheusgrc"
-    },
-
-    "citeMapper" : {
-      "route" : "http://74.70.97.104:8086/find_cite"
     }
   },
 
@@ -81,15 +62,7 @@
     "text" : {
       "name" : "text",
       "main" : true,
-      "template"  : "templates/text2.html"
-    },
-
-    "depTree" : {
-      "name" : "depTree",
-      "main" : true,
-      "contextMenu" : true,
-      "contextMenuTemplate": "templates/arethusa.dep_tree/context_menu.html",
-      "template" : "templates/dep_tree.html"
+      "template"  : "templates/morph_discussion/text.html"
     },
 
     "search" : {
@@ -102,10 +75,10 @@
     "morph" : {
       "retrievers" : {
         "BspMorphRetriever" : {
-          "resource" : "morphologyServiceLat"
+          "resource" : "morphologyServiceGrc"
         }
       },
-      "template"  : "templates/morph3.html",
+      "template"  : "templates/morph_discussion/morph.html",
       "contextMenu" : true,
       "contextMenuTemplate": "templates/arethusa.morph/context_menu.html",
       "lexicalInventory" : {
@@ -115,52 +88,16 @@
           }
         }
       },
-      "fileUrl" : "./static/configs/morph/lat_attributes.json"
-    },
-
-    "relation" : {
-      "name" : "relation",
-      "template" : "templates/relation.html",
-      "advancedMode" : true,
-      "contextMenu" : true,
-      "contextMenuTemplate": "templates/arethusa.relation/context_menu.html",
-      "fileUrl" : "./static/configs/relation/relations.json"
-    },
-
-    "review" : {
-      "name" : "review",
-      "template" : "templates/arethusa.review/review.html",
-      "retrievers" : {
-        "TreebankRetriever" : {
-          "resource" : "fakeGold"
-        }
-      }
-    },
-
-    "history" : {
-      "name" : "history",
-      "maxSize" : 5,
-      "template" : "templates/history.html"
-    },
-
-    "artificialToken" : {
-      "name" : "aT",
-      "template" : "templates/arethusa.artificial_token/artificial_token.html"
+      "fileUrl" : "./static/configs/morph/gr_attributes2.json"
     },
 
     "comments" : {
       "retriever" : {
         "CommentsRetriever" : {
-          "resource" : "fakePerseidsComments"
+          "resource" : "perseidsComments"
         }
       }
     }
-  },
-
-  "exitHandler" : {
-    "title" : "somewhere",
-    "route" : "http://www.:x.com",
-    "params" : ["x", "q"]
   },
 
   "keyCapture" : {
