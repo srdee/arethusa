@@ -3,7 +3,8 @@
 angular.module('arethusa.core').service('plugins', [
   'configurator',
   '$injector',
-  function(configurator, $injector) {
+  '$rootScope',
+  function(configurator, $injector, $rootScope) {
     var self = this;
     var readyPlugins;
     var initCallbacks;
@@ -55,8 +56,16 @@ angular.module('arethusa.core').service('plugins', [
 
       partitionPlugins();
       declareFirstActive();
+      notifyListeners();
       self.init();
     };
+
+    function notifyListeners() {
+      angular.forEach(self.all, function(plugin, name) {
+        console.log(name);
+        $rootScope.$broadcast('pluginAdded', name, plugin);
+      });
+    }
 
     function initPlugin(plugin) {
       if (angular.isFunction(plugin.init)) plugin.init();
@@ -128,6 +137,10 @@ angular.module('arethusa.core').service('plugins', [
         if (readyPlugins[pluginName]) fn();
       };
     }
+
+    this.get = function(name) {
+      return (self.all || {})[name] || {};
+    };
 
     this.init = function() {
       readyPlugins = {};
