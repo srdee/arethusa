@@ -9,7 +9,9 @@
 <div ng-if="filterSelection">
   <div ng-repeat="(id, analysis) in plugin.currentAnalyses()">
     <div class="small-12 columns" lang-specific>
-      <p token-with-id value="analysis.string" token-id="id"/>
+      <p
+        <span token="id" click="true" hover="true"/>
+      </p>
       <div ng-repeat="form in analysis.forms">
         <div ng-style="plugin.styleOf(form)">
           <span style="font-family: 'Courier'">{{ form.postag }}</span>
@@ -24,7 +26,9 @@
 <div ng-if="!filterSelection">
   <div ng-repeat="(id, analysis) in plugin.analyses">
     <div class="small-12 columns" lang-specific>
-      <p ng-class="{ selected: state.isSelected(id) }" token-with-id value="analysis.string" token-id="id"/>
+      <p
+        <span token="id" click="true" hover="true"/>
+      </p>
       <div ng-repeat="form in analysis.forms">
         <div ng-style="plugin.styleOf(form)">
           <span style="font-family: 'Courier'">{{ form.postag }}</span>
