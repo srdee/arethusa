@@ -1,5 +1,6 @@
 "use strict";
 
+define(['arethusa'], function(ar) {
 describe("arethusaUtil", function() {
   var aU = arethusaUtil;
 
@@ -321,4 +322,5 @@ describe("arethusaUtil", function() {
       expect(actual.x).not.toBe(obj.x);
     });
   });
+});
 });

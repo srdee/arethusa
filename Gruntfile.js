@@ -116,10 +116,10 @@ module.exports = function(grunt) {
             {pattern: 'bower_components/**/*.js', included: false},
             {pattern: 'vendor/**/*.js', included: false},
             //{pattern: 'app/**/*.js', included: false},
-            {pattern: './dist/arethusa.min.js', included: false},
+            {pattern: 'dist/arethusa.min.js', included: true},
             {pattern: 'spec/**/*_spec.js', included: false},
           ],
-          exclude: ['app/config.js'],
+          exclude: ['app/config.js', 'app/main_template.js'],
           frameworks: ['jasmine', 'requirejs'],
           browsers : ['PhantomJS'],
           plugins : [

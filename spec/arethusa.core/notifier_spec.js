@@ -1,5 +1,6 @@
 "use strict";
 
+define(['angular', 'angular-mocks', 'arethusa'], function(angular, mocks,  ar) {
 describe("notifier", function() {
   var mockConfigurator = {
     configurationFor: function(name) {
@@ -7,12 +8,12 @@ describe("notifier", function() {
     },
   };
 
-  beforeEach(module("arethusa.core", function($provide) {
+  beforeEach(mocks.module("arethusa.core", function($provide) {
     $provide.value('configurator', mockConfigurator);
   }));
 
   var notifier;
-  beforeEach(inject(function(_notifier_) {
+  beforeEach(mocks.inject(function(_notifier_) {
     notifier = _notifier_;
     notifier.init();
   }));
@@ -104,4 +105,5 @@ describe("notifier", function() {
       expect(notifier.current.type).toEqual('error');
     });
   });
+});
 });

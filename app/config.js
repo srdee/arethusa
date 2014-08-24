@@ -72,7 +72,7 @@ require.config({
     ],
     "angular-mocks": [
       "//ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular-mocks.min",
-      "../bower_components/angular-mocksanimate/angular-mocks"
+      "../bower_components/angular-mocks/angular-mocks"
     ],
     "angular-resource": [
       //"//ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular-resource.min",
