@@ -90,6 +90,7 @@ module.exports = function(grunt) {
         singleRun: true,
         options: {
           files : [
+            /*
             './bower_components/angular/angular.js',
             './bower_components/angular-mocks/angular-mocks.js',
             './bower_components/angular-route/angular-route.js',
@@ -110,19 +111,23 @@ module.exports = function(grunt) {
             './vendor/dagre-d3/dagre-d3.min.js',
             // Some source files we'll need to include manually, otherwise
             // the load order is wrong
-            'app/js/*.js',
-            'app/js/arethusa*/**/*.js',
-            'app/js/util/**/*.js',
-            specFiles
+            */
+            {pattern: 'spec/spec_main.js', included: true},
+            {pattern: 'bower_components/**/*.js', included: false},
+            {pattern: 'vendor/**/*.js', included: false},
+            //{pattern: 'app/**/*.js', included: false},
+            {pattern: './dist/arethusa.min.js', included: false},
+            {pattern: 'spec/**/*_spec.js', included: false},
           ],
           exclude: ['app/config.js'],
-          frameworks: ['jasmine'],
+          frameworks: ['jasmine', 'requirejs'],
           browsers : ['PhantomJS'],
           plugins : [
             'karma-chrome-launcher',
             'karma-phantomjs-launcher',
             'karma-firefox-launcher',
             'karma-jasmine',
+            'karma-requirejs',
             'karma-coverage'
           ],
           reporters: ['progress', 'coverage'],
