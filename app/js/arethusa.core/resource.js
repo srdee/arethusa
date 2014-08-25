@@ -94,7 +94,7 @@ angular.module('arethusa.core').factory('Resource', [
         var params = collectedParams(self.params,{});
         self.mimetype = mimetype;
         var ping = $resource('http://sosol.perseids.org/sosol/dmm_api/ping', null, {});
-        ping.get().then(function() {
+        ping.get().$promise.then(function() {
           return stopSpinning(self.resource.save(params,data));
         }, function() {
           console.log('fail');
