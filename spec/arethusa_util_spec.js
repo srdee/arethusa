@@ -360,4 +360,11 @@ describe("arethusaUtil", function() {
       expect(actual.x).not.toBe(obj.x);
     });
   });
+
+  describe('capitalize', function() {
+    it('capitalizes a string', function() {
+      expect(aU.capitalize('label')).toEqual('Label');
+      expect(aU.capitalize('MUH')).toEqual('Muh');
+    });
+  });
 });

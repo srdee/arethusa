@@ -21,6 +21,7 @@ var arethusaUtil = {
       return mapping ? '(' + mapping +')' : '';
     },
 
+
     map: function (container, fn) {
       if (typeof fn === 'object') {
         var obj = fn;
@@ -74,6 +75,10 @@ var arethusaUtil = {
           }
         }
       }
+    },
+
+    capitalize: function(str){
+      return str[0].toUpperCase() + str.slice(1).toLowerCase();
     },
 
     findNestedProperties: function (nestedObj, properties) {
