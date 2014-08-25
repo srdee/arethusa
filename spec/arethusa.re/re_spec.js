@@ -60,8 +60,8 @@ describe("re", function() {
   describe('recommendation engine', function() {
     describe('this.parseRule', function() {
       iit('parses rules', function() {
-        var rule ="_if_ $head.id === 0 && $morph.attributes.pos === 'verb' _then_ $relation.prefix = 'PRED'";
-        var fn = function anonymous(t) { if (t.head.id === 0 && t.morph.attributes.pos === 'verb') { t.relation.prefix = 'PRED'; } };
+        var rule ="_if_ $head.id === 0 && $morph.attributes.pos === 'verb' _then_ $relation.label= 'PRED'";
+        var fn = function anonymous(t) { if (t.head.id === 0 && t.morph.attributes.pos === 'verb') { t.relation.label = 'PRED'; } };
         var res = fnToString(re.parseRule(rule));
         expect(fnToString(res)).toEqual(fnToString(fn));
       });
