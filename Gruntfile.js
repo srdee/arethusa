@@ -215,6 +215,7 @@ module.exports = function(grunt) {
       },
       main: { files: pluginFiles('arethusa') },
       core: { files: pluginFiles('arethusa.core') },
+      re: { files: pluginFiles('arethusa.re') },
       comments: { files: pluginFiles('arethusa.comments') },
       hebrewMorph: { files: pluginFiles('arethusa.hebrew_morph') },
       artificialToken: { files: pluginFiles('arethusa.artificial_token') },
@@ -286,7 +287,9 @@ module.exports = function(grunt) {
   grunt.registerTask('reloader:no-css', 'watch:serverNoCss');
   grunt.registerTask('reloader:css', 'watch:serverCss');
   grunt.registerTask('minify:css', ['sass', 'cssmin:css']);
+    'uglify:re',
   grunt.registerTask('minify', [
+    'uglify:re',
     'uglify:comments',
     'uglify:hebrewMorph',
     'uglify:main',
@@ -309,5 +312,6 @@ module.exports = function(grunt) {
     'uglify:templates'
   ]);
   grunt.registerTask('minify:all', ['minify:css', 'minify']);
+    'uglify:re',
   grunt.registerTask('sauce', ['sauce_connect', 'protractor:travis', 'sauce-connect-close']);
 };
