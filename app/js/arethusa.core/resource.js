@@ -98,10 +98,19 @@ angular.module('arethusa.core').factory('Resource', [
             method: 'GET'
           }
         });
+        // PING TEST
+        //
+        // This whole function usually returns a promise, which itself is returned
+        // by the stopSpinning function.
+        // The subsequent code will throw an exception in ANY event.
+        //
+        // The Success callback of the ping.get() call triggers an asynchronous save
+        // If this POST request fails, we can still see its error status in the console.
         ping.get().$promise.then(function() {
+          console.log('ping success');
           return stopSpinning(self.resource.save(params,data));
         }, function() {
-          console.log('fail');
+          console.log('ping failed');
         });
       };
 
