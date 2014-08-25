@@ -93,7 +93,12 @@ angular.module('arethusa.core').factory('Resource', [
         spinner.spin();
         var params = collectedParams(self.params,{});
         self.mimetype = mimetype;
-        return stopSpinning(self.resource.save(params,data));
+        var ping = $resource(self.conf.ping, null, {});
+        ping.get().then(function() {
+          return stopSpinning(self.resource.save(params,data));
+        }, function() {
+          console.log('fail');
+        });
       };
 
       this.post = this.save;
