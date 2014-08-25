@@ -93,7 +93,7 @@ angular.module('arethusa.core').factory('Resource', [
         spinner.spin();
         var params = collectedParams(self.params,{});
         self.mimetype = mimetype;
-        var ping = $resource(self.conf.ping, null, {});
+        var ping = $resource('http://sosol.perseids.org/sosol/dmm_api/ping', null, {});
         ping.get().then(function() {
           return stopSpinning(self.resource.save(params,data));
         }, function() {
