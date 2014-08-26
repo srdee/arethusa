@@ -8,7 +8,7 @@ angular.module('arethusa.core').factory('Auth', [
       self.conf = conf;
 
       var ping = self.conf.ping;
-      var pinger = ping ? $resource(self.conf.ping, null, {}) : {};
+      var pinger = ping ? $resource(self.conf.ping, null, { withCredentials: true }) : {};
 
       this.preflight = function() {
         // if the authorization config for this resource has a
