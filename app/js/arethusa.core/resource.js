@@ -93,7 +93,15 @@ angular.module('arethusa.core').factory('Resource', [
         spinner.spin();
         var params = collectedParams(self.params,{});
         self.mimetype = mimetype;
-        return stopSpinning(self.resource.save(params,data));
+        var deferred = $q.defer();
+
+        var fn = function() {
+          return stopSpinning(self.resource.save(params,data));
+        };
+
+        auth.checkAndSave(deferred, fn);
+
+        return deferred.promise;
       };
 
       this.post = this.save;

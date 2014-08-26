@@ -8,6 +8,9 @@ angular.module('arethusa.core').factory('Auth', [
       var self = this;
       self.conf = conf;
 
+      var ping = self.conf.ping;
+      var pinger = ping ? $resource(self.conf.ping, null, {}) || {};
+
       this.preflight = function() {
         // if the authorization config for this resource has a
         // ping method configured, use it to initialize the cookies
@@ -16,8 +19,20 @@ angular.module('arethusa.core').factory('Auth', [
           // TODO should really have some error handling here
           // because if the ping fails the subsequent get and post
           // requests on the resource will
-          ping.get();
+          ping.get(function(res) {
+            //$cookies[self.conf.cookie] =
+          });
         }
+      };
+
+      this.checkAndSave = function(q, callback) {
+        pinger.get(function() {
+          callback().then(function(res) {
+            q.resolve(res);
+          });
+        }, function() {
+          q.reject();
+        });
       };
 
       this.transformResponse = function(headers) {
