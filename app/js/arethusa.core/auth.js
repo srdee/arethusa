@@ -29,10 +29,10 @@ angular.module('arethusa.core').factory('Auth', [
       }
 
       this.checkAndSave = function(q, callback) {
-        pinger.get(function(res) {
-          console.log(res.headers());
+        pinger.get(function(data, headers) {
+          console.log(headers());
           console.log(angular.copy($cookies));
-          var newCookie = res.headers()['Cookie'][self.conf.cookie];
+          var newCookie = headers()['Cookie'][self.conf.cookie];
           updateCookie(newCookie);
           console.log($cookies);
 
