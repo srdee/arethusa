@@ -3,7 +3,7 @@ angular.module('arethusa.core').factory('Auth', [
   '$resource',
   '$cookies',
   '$timeout',
-  function ($resource,$cookies) {
+  function ($resource, $cookies, $timeout) {
     return function(conf) {
       var self = this;
       self.conf = conf;
