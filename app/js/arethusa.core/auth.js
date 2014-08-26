@@ -12,7 +12,7 @@ angular.module('arethusa.core').factory('Auth', [
         get: {
           transformRequest: function(data, headers) {
             headers()['Access-Control-Allow-Credentials'] = true;
-          };
+          },
           method: "GET",
           withCredentials: true
         }
