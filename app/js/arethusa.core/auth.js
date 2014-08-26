@@ -3,13 +3,12 @@ angular.module('arethusa.core').factory('Auth', [
   '$resource',
   '$cookies',
   function ($resource,$cookies) {
-
     return function(conf) {
       var self = this;
       self.conf = conf;
 
       var ping = self.conf.ping;
-      var pinger = ping ? $resource(self.conf.ping, null, {}) || {};
+      var pinger = ping ? $resource(self.conf.ping, null, {}) : {};
 
       this.preflight = function() {
         // if the authorization config for this resource has a
