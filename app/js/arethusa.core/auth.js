@@ -24,8 +24,19 @@ angular.module('arethusa.core').factory('Auth', [
         }
       };
 
+      function updateCookie(cookie) {
+        $cookies[self.conf.cookie] = cookie;
+      }
+
       this.checkAndSave = function(q, callback) {
-        pinger.get(function() {
+        pinger.get(function(res) {
+          console.log(res.headers());
+          console.log(angular.copy($cookies));
+          var newCookie = res.headers()['Cookie'][self.conf.cookie];
+          updateCookie(newCookie);
+          console.log($cookies);
+
+          // restore the cookie
           callback().then(function(res) {
             q.resolve(res);
           });
