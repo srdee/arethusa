@@ -1,7 +1,29 @@
 "use strict";
 
 describe('keyCapture', function() {
-  beforeEach(module('arethusa.core'));
+  //beforeEach(module('arethusa.core'));
+
+  function keys(){
+    return {
+      keys: {
+        "gr" : {
+          "modifiers" : {
+            "[" : "3",
+          },
+          "a" : "α",
+          "A" : "Α",
+          "[-a" : "ᾶ"
+        }
+      }
+    };
+  }
+
+  var conf = {configurationFor: keys };
+
+  beforeEach(module("arethusa.core", function($provide) {
+    $provide.value('configurator', arethusaMocks.configurator(conf));
+  }));
+
 
   var keyCapture;
   beforeEach(inject(function(_keyCapture_) {
@@ -166,6 +188,45 @@ describe('keyCapture', function() {
       keyCapture.keyup(e1);
       keyCapture.keyup(e13);
       expect(count).toEqual(11);
+    });
+  });
+
+  describe('foreign key', function() {
+    describe('with greek', function() {
+      var language = 'gr';
+
+      it('returns a specified UTF-8 char for a specified language', function() {
+        var event = new Event(65);
+        var utf8Char = keyCapture.getForeignKey(event, language);
+        expect(utf8Char).toEqual('α');
+      });
+
+      it('returns a specified UTF-8 char (shifted) for a specified language', function() {
+        var event = new Event(65, true);
+        var utf8Char = keyCapture.getForeignKey(event, language);
+        expect(utf8Char).toEqual('Α');
+      });
+
+      it('returns a specified UTF-8 char (with specified modifier) for a specified language', function() {
+        var event1 = new Event(219);
+        var event2 = new Event(65);
+        keyCapture.getForeignKey(event1, language);
+        var utf8Char = keyCapture.getForeignKey(event2, language);
+        expect(utf8Char).toEqual('ᾶ');
+      });
+
+      it('returns undefined if char is not defined', function() {
+        // 66 ('b') not defined in our mock table
+        var event = new Event(66);
+        var utf8Char = keyCapture.getForeignKey(event, language);
+        expect(utf8Char).toBeUndefined();
+      });
+
+      it('returns false if char is a modifier', function() {
+        var event = new Event(219);
+        var utf8Char = keyCapture.getForeignKey(event, language);
+        expect(utf8Char).toBeFalsy();
+      });
     });
   });
 });
