@@ -22,12 +22,11 @@ angular.module('arethusa.core').directive('foreignKeys',[
           return (languageSettings.getFor('treebank') || languageSettings.getFor('hebrewMorph') || {}).lang;
         }
 
-        function lang() {
-          return scope.foreignKeys || extractLanguage();
-        }
+        // defined on scope for testing...
+        scope.lang = scope.foreignKeys || extractLanguage();
 
         function activeLanguage() {
-          return languageSettings.langNames[lang()];
+          return languageSettings.langNames[scope.lang];
         }
 
         // This will not detect changes right now
@@ -86,7 +85,7 @@ angular.module('arethusa.core').directive('foreignKeys',[
 
         scope.parseEvent = function (event, noApply) {
           var input = element[0].value;
-          var l = lang();
+          var l = scope.lang;
           if (l) {
             var fK = keyCapture.getForeignKey(event, l);
             if (fK === false) {
