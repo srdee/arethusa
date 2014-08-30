@@ -13,6 +13,25 @@ describe('keyCapture', function() {
           "a" : "α",
           "A" : "Α",
           "[-a" : "ᾶ"
+        },
+        "us" : {
+          "29" : {
+            "hide" : false,
+            "lower" : "⇪",
+            "style" : {
+              "class" : "capslock first-key shifter"
+            }
+          },
+          "30" : {
+            "lower" : "a",
+            "upper" : "A",
+            "style" : {}
+          },
+          "47" : {
+            "lower" : "b",
+            "upper" : "B",
+            "style" : {}
+          }
         }
       }
     };
@@ -226,6 +245,39 @@ describe('keyCapture', function() {
         var event = new Event(219);
         var utf8Char = keyCapture.getForeignKey(event, language);
         expect(utf8Char).toBeFalsy();
+      });
+    });
+
+    describe('keyCapture.mappedKeyboard', function() {
+      describe('with greek', function() {
+        var language = 'gr';
+        it('returns an array of objects including a show key', function() {
+          var res = keyCapture.mappedKeyboard(language);
+          var alpha = res[1].show;
+          var capslock = res[0].show;
+
+          expect(alpha).toEqual(['α', 'Α']);
+          expect(capslock).toEqual(['⇪']);
+        });
+
+        it('reacts on shift keys', function() {
+          var res = keyCapture.mappedKeyboard(language, true);
+          var alpha = res[1].show;
+          var capslock = res[0].show;
+
+          expect(alpha).toEqual(['Α', 'α']);
+          expect(capslock).toEqual(['⇪']);
+        });
+
+        it('displays unmapped chars in light gray', function() {
+          var res = keyCapture.mappedKeyboard(language);
+          var b = res[2].show;
+          var lowerCaseStyle = res[2].style.class[0];
+          var upperCaseStyle = res[2].style.class[1];
+          expect(b).toEqual(['b', 'B']);
+          expect(lowerCaseStyle).toEqual("inactive");
+          expect(upperCaseStyle).toEqual("inactive");
+        });
       });
     });
   });
