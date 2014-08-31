@@ -401,6 +401,7 @@ module.exports = function(grunt) {
   grunt.registerTask('minify:conf', 'shell:minifyConfs');
   grunt.registerTask('minify', uglifyTasks().concat([
     'uglify:main',
+    'uglify:util',
     'ngtemplates',
     'uglify:templates'
   ]));
