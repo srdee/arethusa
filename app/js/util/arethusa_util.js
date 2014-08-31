@@ -146,6 +146,10 @@ var arethusaUtil = {
       return str.substring(0, i) + replacement + str.substring(i + 1);
     },
 
+    insert: function(str, i, insertion) {
+      return [str.slice(0,i), insertion, str.substring(i)].join('');
+    },
+
     isTerminatingPunctuation: function (str) {
       return str.match(/[\.;]/);
     },

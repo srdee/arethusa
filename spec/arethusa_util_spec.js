@@ -231,6 +231,12 @@ describe("arethusaUtil", function() {
     });
   });
 
+  describe('insert', function() {
+    it('inserts a char in a string', function() {
+      expect(aU.insert("ac", 1, "b")).toEqual("abc");
+    });
+  });
+
   describe('isTerminatingPunctuation', function() {
     it('detects sentence terminating punctuation characters', function() {
       expect(aU.isTerminatingPunctuation('.')).toBeTruthy();

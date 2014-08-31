@@ -79,7 +79,8 @@ angular.module('arethusa.core').directive('foreignKeys',[
         appendHelp();
 
         function applyModifiedKey(parent, input, fK) {
-          parent.$eval(scope.ngModel + ' = i + k', { i: input, k: fK });
+          var t = arethusaUtil.insert(input, scope.position, fK);
+          parent.$eval(scope.ngModel + ' = t', { t: t });
           scope.ngChange();
         }
 
@@ -96,7 +97,7 @@ angular.module('arethusa.core').directive('foreignKeys',[
               return true;
             } else {
               broadcast(event);
-              element.value = input + fK;
+              element.value = arethusaUtil.insert(input, scope.position, fK); //input + fK;
 
               // When we call this method from an ng-click we might
               // already be digesting!
@@ -112,6 +113,12 @@ angular.module('arethusa.core').directive('foreignKeys',[
             return true;
           }
         };
+
+        function getCursorPosition() {
+          scope.position = element[0].selectionStart;
+        }
+
+        element.on('keyup', getCursorPosition);
 
         scope.$watch('enabled', function(newVal, oldVal) {
           if (newVal) {
