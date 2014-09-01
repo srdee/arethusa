@@ -97,7 +97,6 @@ angular.module('arethusa.core').directive('foreignKeys',[
               return true;
             } else {
               broadcast(event);
-              element.value = arethusaUtil.insert(input, scope.position, fK); //input + fK;
 
               // When we call this method from an ng-click we might
               // already be digesting!
