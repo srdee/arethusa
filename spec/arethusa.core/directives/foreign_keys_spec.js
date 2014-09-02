@@ -33,14 +33,28 @@ describe("foreignKeys", function() {
       }
     };
   }
-  var conf = {configurationFor: keys };
+  var conf = { configurationFor: keys };
+  var lang = {
+    getFor: function(doc) {
+      return {
+        name: 'Greek',
+        lang: 'gr',
+        leftToRight: true
+      };
+    },
+    langNames:  {
+      'gr' : 'Greek'
+    }
+  };
+
   beforeEach(function() {
     module("arethusa.core", function($provide) {
       $provide.value('configurator', arethusaMocks.configurator(conf));
+      $provide.value('languageSettings', lang);
     });
   });
 
-  function init(template, fn) {
+  function init(template, fn, isolateScope) {
     inject(function($compile, $rootScope, _state_, _keyCapture_, _languageSettings_, _globalSettings_) {
       state = _state_;
       keyCapture = _keyCapture_;
@@ -54,24 +68,26 @@ describe("foreignKeys", function() {
 
       $compile(element)(parentScope);
 
-      scope = element.isolateScope();
+      if (isolateScope === true) {
+        scope = element.isolateScope();
+      } else {
+        scope = element.scope();
+      }
       scope.$digest();
     });
   }
 
   describe('parseEvent', function() {
-    beforeEach(function() { init(template1); });
+    beforeEach(function() { init(template1, undefined, true); });
     describe('with Greek', function() {
       it('returns false if input is transformed', function() {
         var event = { keyCode: 65 };
-        scope.lang = 'gr';
         var parse = scope.parseEvent(event);
         expect(parse).toBeFalsy();
       });
 
       it('returns true if input is undefined', function() {
         var event = { keyCode: 66 };
-        scope.lang = 'gr';
         var parse = scope.parseEvent(event);
         expect(parse).toBeTruthy();
       });
@@ -82,7 +98,6 @@ describe("foreignKeys", function() {
 
       it('transforms input and displays it', function() {
         var event = { keyCode: 65 };
-        scope.lang = 'gr';
         var parse = scope.parseEvent(event);
         expect(element[0].value).toEqual('α');
         expect(parse).toBeFalsy();
@@ -90,7 +105,6 @@ describe("foreignKeys", function() {
 
       it('appends new input at the end', function() {
         var event1 = { keyCode: 65 };
-        scope.lang = 'gr';
         // Since we fake a previous input, we have to move
         // the cursor manually by one.
         element[0].value = 'ψ';
@@ -100,12 +114,17 @@ describe("foreignKeys", function() {
         expect(element[0].value).toEqual('ψα');
         expect(parse).toBeFalsy();
       });
+
+      it('has a placeHolderText', function() {
+      });
     });
   });
 
   describe('has a help element appended', function() {
     beforeEach(function() { init(template2); });
     xit('displays a keyboard', function() {
+      var children = element.children().length;
+      expect(children).toEqual(2);
     });
   });
 });
