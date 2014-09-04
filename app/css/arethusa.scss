@@ -4,14 +4,24 @@
 @import "animation_helpers";
 @import 'toaster';
 
+$promethian-black : #1c1c1c;
+$promethian-yellow : #ffcc00;
+$promethian-green : #3F5F26;
+$promethian-lightgray : #b6b6b6;
+$promethian-font-color : #f0e7d5;
+
 html, body {
   height: 100%;
   overflow: hidden;
+  background: $promethian-black;
+  color: $promethian-font-color;
 }
 
 #canvas {
   overflow: hidden;
   width: 100%;
+  background: $promethian-black;
+  border-color: $promethian-yellow;
 }
 
 .scrollable {
@@ -33,7 +43,7 @@ html, body {
   position: absolute;
   width: 8px;
   border-left: 1px solid;
-  border-color: #d8d8d8;
+  border-color: $promethian-yellow;
   cursor: e-resize;
   background: url(../app/images/handle-v.png) 3px 50% no-repeat;
 }
@@ -49,7 +59,7 @@ html, body {
 }
 
 .tree-canvas {
-  border: 1px solid rgb(216, 216, 216)
+  border: 1px solid $promethian-yellow;
 }
 
 .tree-settings {
@@ -263,11 +273,11 @@ svg {
 }
 
 .node rect {
-  stroke: $panel-bg;
+  stroke: $promethian-black;
   stroke-width : 1.5px;
   /* The following color needs to be taken from a foundation variable */
   /* once we start to use scss. It's the panels background color */
-  fill: $panel-bg;
+  fill: $promethian-black;
 }
 
 .selected text {
@@ -279,16 +289,17 @@ svg {
 }
 
 .edgeLabel rect {
-  fill: $panel-bg;
+  fill: $promethian-black;
 }
 
 .tree-label {
   font-size: 0.7em;
+  color: $promethian-lightgray;
 }
 
 .edgePath {
-  stroke: #333;
-  stroke-width : 0.5px;
+  stroke: $promethian-yellow;
+  stroke-width : 0.7px;
   fill: none;
 }
 
@@ -321,7 +332,7 @@ span.right-answer {
 
 /* Overrides to foundation */
 dl.tabs {
-  border-bottom: 1px solid #d8d8d8;
+  border-bottom: 1px solid $promethian-yellow;
 }
 .tabs dd a {
   padding: 0.5em 0.7em;
@@ -332,6 +343,8 @@ dl.tabs {
   border-right: 1px;
   border-top: 1px;
   border-bottom: 0;
+  background: $promethian-black;
+  color: $promethian-lightgray;
 }
 
 .f-dropdown.content {
@@ -358,36 +371,40 @@ body {
 
 }
 a {
-  color: #73CDDE;
+  color: $promethian-yellow;
 }
 
 a:hover, a:focus {
-  color: #5BC8DC;
+  color: #558034;
 }
 
 .tabs dd a {
   border-style: solid;
-  border-color: #d8d8d8;
+  border-color: $promethian-yellow;
+  color: $promethian-lightgray;
 }
 
-.tabs dd a:hover {
-  border-color: #aaaaaa;
+.tabs dd a:hover, a:active {
+  border-color: $promethian-yellow;
+  background: $promethian-yellow;
+  color: $promethian-black;
 }
 
 .top-bar, .top-bar-section .has-form, .top-bar-section ul, .top-bar-section li:not(.has-form) a:not(.button) {
-  background: #4E6476;
+  background: $promethian-black;
+  border-bottom-color: $promethian-yellow;
 }
 .top-bar-section li:not(.has-form) a:not(.button):hover {
-  background: #7E8897;
+  background: $promethian-black;
 }
 
 .top-bar-section ul li>a.button, li>button, button, .button, .label {
-  background: #3E8D9C;
-  color: white;
+  background: $promethian-green;
+  color: $promethian-yellow;
 }
 
 .top-bar-section ul li>a.button:hover, li>button:hover, button:hover, .button:hover, button:focus, .button:focus {
-  background: #73CDDE;
+  background: $promethian-yellow;
 }
 
 .button.alert {
@@ -506,7 +523,7 @@ div.citbibl {
 /*Morphology related*/
 
 .accordion-selected {
-  background-color: rgb(235, 255, 235) !important;
+  background-color: $promethian-black !important;
   @include transition(background-color 300ms ease-in-out);
 }
 
@@ -569,10 +586,12 @@ input.compact {
 
 .settings-span-button {
   @extend .clickable, .margined-hor-tiny, .flash-on-hover;
+  color: $promethian-yellow;
 }
 
 .clickable {
   cursor: pointer;
+  color: $promethian-yellow;
 }
 
 .copy-cursor{
@@ -599,7 +618,7 @@ input.compact {
 }
 
 .small-panel {
-  border: 1px solid #d8d8d8;
+  border: 1px solid $promethian-yellow;
   padding: 0.5rem;
 }
 
